@@ -1,4 +1,4 @@
-import App from "../App";
+import App from "../routes/app/App";
 import Doctors from "../routes/doctors/Doctors";
 import Doctor from "../routes/doctor/Doctor";
 
