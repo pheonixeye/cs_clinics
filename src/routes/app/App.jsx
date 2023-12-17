@@ -7,6 +7,7 @@ import Contact from "../../components/contact-div/Contact";
 import Footer from "../../components/footer-div/Footer";
 import ActionsSwitch from "./components/ActionsSwitch/ActionsSwitch";
 import SideBar from "./components/sidebar/SideBar";
+import styles from "./app.module.css";
 
 function App() {
   return (
@@ -19,11 +20,11 @@ function App() {
       </Helmet>
       {/* <div>{t("address")}</div> */}
       {/*TODO: hero div => book app => doctors page => doctor page*/}
-      <div className="sidebar-container">
+      <div className={styles.sidebarContainer}>
         <SideBar />
-        <div className="language-switcher-container">
+        <div className={styles.languageSwitcherContainer}>
           <ActionsSwitch />
-          <div className="main-container">
+          <div className={styles.mainContainer}>
             <Hero />
             {/*TODO: doctors div => doctor page*/}
             <OurDoctors />

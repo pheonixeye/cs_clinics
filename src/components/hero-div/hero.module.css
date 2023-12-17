@@ -1,0 +1,15 @@
+.heroContainer {
+  display: flex;
+  flex-direction: row;
+  max-width: 300;
+  width: 150;
+  max-height: 300;
+  height: 150;
+  z-index: 1;
+  position: relative;
+}
+
+.heroImage {
+  display: flex;
+  object-fit: contain;
+}

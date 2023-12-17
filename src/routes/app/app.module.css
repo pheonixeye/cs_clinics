@@ -1,0 +1,11 @@
+.sidebarContainer {
+  display: flex;
+}
+
+.languageSwitcherContainer {
+  display: flex;
+}
+
+.mainContainer {
+  display: flex;
+}
