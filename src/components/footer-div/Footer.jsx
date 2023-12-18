@@ -1,5 +1,5 @@
 const Footer = () => {
-  return <div>Footer div</div>;
+  return <div style={{ height: "800px" }}>Footer div</div>;
 };
 
 export default Footer;

@@ -1,5 +1,5 @@
 const OurDoctors = () => {
-  return <div>OurDoctors div</div>;
+  return <div style={{ height: "800px" }}>OurDoctors div</div>;
 };
 
 export default OurDoctors;

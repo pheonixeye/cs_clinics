@@ -1,9 +1,9 @@
 .actionsContainer {
   display: flex;
   flex-direction: column;
-  max-width: 50px;
+  max-width: 75px;
   width: 50px;
-  align-self: flex-end;
+  align-self: center;
   z-index: 3;
   position: relative;
 }
@@ -14,4 +14,14 @@
   margin: 10px 10px;
   border-radius: 50px;
   padding: 0px 0px;
+}
+
+.menuBtn {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .menuBtn {
+    display: block;
+  }
 }

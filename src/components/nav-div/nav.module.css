@@ -1,0 +1,56 @@
+.navDiv {
+  display: flex;
+  height: 100px;
+  flex-basis: content;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .navBar {
+    display: none !important;
+  }
+  .clinicLogo {
+    margin-inline-start: 0px;
+  }
+  .logoContainer {
+    margin-inline-start: 10px;
+  }
+}
+
+.logoContainer {
+  width: 75px;
+  height: 75px;
+  border-radius: 37.5px;
+  background-color: rgba(255, 255, 255, 0.87);
+}
+
+.clinicLogo {
+  width: 75px;
+  height: 75px;
+}
+
+.clinicNameText {
+  margin: 0px 0px;
+  margin-inline-start: 30px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  align-self: end;
+}
+
+.navBar {
+  display: flex;
+  margin-inline-start: 30%;
+}
+
+.navBar ul {
+  display: flex;
+  list-style: none;
+  text-align: center;
+  font-size: 28px;
+  align-items: end;
+  margin: 0px 0px;
+}
+
+.navBar ul a {
+  margin-inline-start: 40px;
+}

@@ -1,15 +1,49 @@
 .heroContainer {
-  display: flex;
-  flex-direction: row;
-  max-width: 300;
-  width: 150;
-  max-height: 300;
-  height: 150;
+  display: grid;
   z-index: 1;
-  position: relative;
+  grid-template-columns: 50px 350px 1fr;
+  grid-template-rows: 1fr 100px;
 }
 
 .heroImage {
-  display: flex;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
   object-fit: contain;
+  object-position: center;
+  margin: auto;
+  text-align: start;
+}
+
+@media (max-width: 600px) {
+  .heroImage {
+    max-width: 250px;
+    max-height: 250px;
+    grid-row: 1 / 2;
+  }
+  .heroContainer {
+    grid-template-columns: 20px 100px 1fr 20px;
+    grid-template-rows: 1fr 75px;
+  }
+  .ctaBtn {
+    grid-column: 2 / 4 !important;
+  }
+}
+
+.flipImg {
+  transform: scaleX(-1);
+}
+
+.ctaBtn {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.heroTag {
+  display: flex;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.heroTag h3 {
+  margin: auto;
 }

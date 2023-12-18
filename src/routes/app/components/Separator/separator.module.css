@@ -1,0 +1,7 @@
+.separator {
+  background-color: var(--sinopia);
+}
+
+.separator.transparent {
+  background-color: transparent !important;
+}
