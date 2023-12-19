@@ -1,0 +1,50 @@
+.doctorCard {
+  display: grid;
+  grid-template-columns: 10px 1fr 3fr;
+  grid-template-rows: repeat(3, 1fr);
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -webkit-box-shadow: 5px 5px 15px 0px var(--persimmon);
+  -moz-box-shadow: 5px 5px 15px 0px var(--persimmon);
+  box-shadow: 5px 5px 15px 0px var(--persimmon);
+  background: none repeat 0 0 #cac6d2;
+  background-color: #cac6d2;
+  margin: 10px 10px;
+  padding: 10px 10px;
+}
+
+.doctorCard:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 5px 5px 15px 20px var(--persimmon);
+  -moz-box-shadow: 5px 5px 15px 20px var(--persimmon);
+  box-shadow: 5px 5px 15px 20px var(--persimmon);
+}
+
+.imgContainer {
+  grid-column: 2 / 3;
+  grid-row: 1 / -1;
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  display: flex;
+  background-color: var(--rich-black);
+  justify-content: center;
+}
+
+.dataContainer {
+  grid-row: 1 / -1;
+  grid-column: 3 / 4;
+}
+
+.dataContainer h4 span {
+  color: var(--persimmon);
+}
+
+.dataContainer h4 {
+  color: var(--rich-black);
+}
+
+.dataContainer h5 {
+  color: var(--chocolate-cosmos);
+}

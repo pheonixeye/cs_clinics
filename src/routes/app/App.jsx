@@ -34,8 +34,12 @@ function App() {
         <Separator />
         {/*TODO: doctors div => doctor page*/}
         <OurDoctors />
+        <Separator isTransparent={true} />
+        <Separator />
         {/*TODO: contact div*/}
         <Contact />
+        <Separator isTransparent={true} />
+        <Separator />
         {/*TODO: footer div*/}
         <Footer />
       </div>

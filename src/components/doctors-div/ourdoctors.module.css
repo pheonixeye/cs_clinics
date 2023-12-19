@@ -1,0 +1,14 @@
+.ourDoctorsDiv {
+  height: max-content;
+}
+
+.doctorsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 600px) {
+  .doctorsList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

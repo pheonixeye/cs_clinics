@@ -40,10 +40,13 @@
 
 .heroTag {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 }
 
 .heroTag h3 {
-  margin: auto;
+  /* margin: auto; */
 }

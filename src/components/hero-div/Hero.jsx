@@ -3,7 +3,7 @@ import styles from "./hero.module.css";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const lang = i18n.language;
 
@@ -14,9 +14,12 @@ const Hero = () => {
         alt="hero img"
         className={styles.heroImage + ` ${lang === "ar" ? styles.flipImg : ""}`}
       />
-      <button className={"btn" + " " + styles.ctaBtn}>Book Appointment</button>
+      <button className={"btn" + " " + styles.ctaBtn}>
+        {t("Book Appointment")}
+      </button>
       <div className={styles.heroTag}>
-        <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h3>
+        <h3>{t("better1")} </h3>
+        <h3> {t("better2")}</h3>
       </div>
     </div>
   );
