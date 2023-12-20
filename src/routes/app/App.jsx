@@ -9,6 +9,8 @@ import styles from "./app.module.css";
 import Nav from "../../components/nav-div/Nav";
 import { useState } from "react";
 import Separator from "../app/components/Separator/Separator";
+import Social from "../../components/social/Social";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,39 +26,76 @@ function App() {
         <link rel="canonical" href="http://mysite.com/" />
         {/*TODO:add complete head seo related tags*/}
       </Helmet>
-      <div className={styles.mainContainer}>
-        {/*TODO: nav div*/}
+      {/*TODO: nav div*/}
+
+      <Router>
         <Nav />
-        <Separator />
-        {/*TODO: hero div*/}
-        <Hero />
-        <Separator isTransparent={true} />
-        <Separator />
-        {/*TODO: doctors div => doctor page*/}
-        <OurDoctors />
-        <Separator isTransparent={true} />
-        <Separator />
-        {/*TODO: contact div*/}
-        <Contact />
+        <Routes>
+          <Route
+            path="/"
+            index={true}
+            element={
+              <div className={styles.mainContainer}>
+                {/*TODO: hero div*/}
+                <Hero />
+                <Separator isTransparent={true} />
+                <Separator />
+                {/*TODO: doctors div => doctor page*/}
+                <OurDoctors />
+                <Separator isTransparent={true} />
+                <Separator />
+                {/*TODO: contact div*/}
+                <Contact />
+                <Separator isTransparent={true} />
+                <Separator />
+              </div>
+            }
+          ></Route>
+          <Route
+            path="doctors"
+            element={
+              <>
+                <OurDoctors />
+                <Separator isTransparent={true} />
+                <Separator />
+              </>
+            }
+          ></Route>
+          <Route
+            path="contact"
+            element={
+              <>
+                <Contact />
+                <Separator isTransparent={true} />
+                <Separator />
+              </>
+            }
+          ></Route>
+          <Route path="doctors/:docid"></Route>
+        </Routes>
+        <div
+          className={
+            styles.sidebarContainer + " " + (isMenuOpen ? styles.animate : "")
+          }
+        >
+          <SideBar isMenuOpen={isMenuOpen} openCloseDrawer={openCloseDrawer} />
+        </div>
+
+        <div className={styles.languageSwitcherContainer}>
+          <ActionsSwitch
+            isMenuOpen={isMenuOpen}
+            openCloseDrawer={openCloseDrawer}
+          />
+        </div>
+      </Router>
+
+      <div className={styles.bottomDiv}>
+        {/*TODO: social div*/}
+        <Social />
         <Separator isTransparent={true} />
         <Separator />
         {/*TODO: footer div*/}
         <Footer />
-      </div>
-
-      <div
-        className={
-          styles.sidebarContainer + " " + (isMenuOpen ? styles.animate : "")
-        }
-      >
-        <SideBar isMenuOpen={isMenuOpen} />
-      </div>
-
-      <div className={styles.languageSwitcherContainer}>
-        <ActionsSwitch
-          isMenuOpen={isMenuOpen}
-          openCloseDrawer={openCloseDrawer}
-        />
       </div>
     </>
   );

@@ -1,30 +1,28 @@
 import styles from "./ourdoctors.module.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 import LoadingIndicator from "./components/loading-indicator/LoadingIndicator";
 import DoctorCard from "./components/doctor-card/DoctorCard";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { MAINQUERY, getDoctors } from "../../routes/get_doctors";
 
 const OurDoctors = () => {
   const { t } = useTranslation();
-  const [doctors, setDoctors] = useState([]);
 
-  useEffect(() => {
-    const url = "https://cosmosurgeserver.xyz/cpanel";
-    axios.get(url).then((res) => {
-      setDoctors([...res.data]);
-    });
-  }, []);
+  const { data: doctors, isLoading } = useQuery({
+    queryKey: [MAINQUERY],
+    queryFn: getDoctors,
+  });
 
-  console.log(doctors);
   return (
     <div className={styles.ourDoctorsDiv}>
       <h2>{t("Our Doctors")}</h2>
-      {doctors.length == 0 ? (
+      {isLoading ? (
         <LoadingIndicator />
       ) : (
         <div className={styles.doctorsList}>
-          {doctors?.map((doctor, index) => {
+          {doctors?.data.map((doctor, index) => {
             return <DoctorCard key={index} doctor={doctor}></DoctorCard>;
           })}
         </div>

@@ -1,25 +1,21 @@
-import App from "../routes/app/App";
-import Doctors from "../routes/doctors/Doctors";
-import Doctor from "../routes/doctor/Doctor";
+// import Doctors from "../routes/doctors/Doctors";
+// import Doctor from "../routes/doctor/Doctor";
+// import { createBrowserRouter } from "react-router-dom";
+// import Homepage from "./app/components/Homepage/Homepage";
 
-import { createBrowserRouter } from "react-router-dom";
-import { loader } from "./get_doctors";
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Homepage />,
+//   },
+//   {
+//     path: "doctors",
+//     element: <Doctors />,
+//   },
+//   {
+//     path: "doctors/:docid",
+//     element: <Doctor />,
+//   },
+// ]);
 
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "doctors",
-    element: <Doctors />,
-    loader: loader,
-  },
-  {
-    path: "doctors/:docid",
-    element: <Doctor />,
-  },
-]);
-
-export default router;
+// export default router;

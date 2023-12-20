@@ -23,9 +23,20 @@ const ActionsSwitch = (props) => {
     props.openCloseDrawer();
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className={styles.actionsContainer}>
-      <button className={`btn scroll-to-top-btn ${styles.actionButton}`}>
+      <button
+        className={`btn scroll-to-top-btn ${styles.actionButton}`}
+        onClick={scrollToTop}
+      >
         <BsArrowUpCircle />
       </button>
       <button className={`btn whatsapp-btn ${styles.actionButton}`}>

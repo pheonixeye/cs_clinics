@@ -1,5 +1,6 @@
 .separator {
   background-color: var(--sinopia);
+  grid-column: 1 / -1;
 }
 
 .separator.transparent {

@@ -28,7 +28,7 @@
   "Seamless Care": "رعاية سلسة",
   "At CosmoSurge Clinics, every aspect of your care is coordinated and teams of experts work together to provide exactly the care you need. What might take months elsewhere can often be done in days here.": "في عيادات CosmoSurge ، يتم تنسيق كل جانب من جوانب رعايتك ويعمل فريق من الخبراء معًا لتوفير الرعاية التي تحتاجها بالضبط. ما قد يستغرق شهورًا في مكان آخر يمكن فعله غالبًا في أيام هنا.",
   "Choose CosmoSurge": "اختر CosmoSurge",
-  "Contact Information": "معلومات التواصل",
+  "Contact": "التواصل",
   "address": "زهراء المعادي - الشطر الثالث عشر - برج الندي - الدور الأول",
   "GET DIRECTIONS": "احصل على الاتجاهات",
   "Opening Hours": "ساعات العمل",
@@ -128,5 +128,11 @@
   "Choose CosmoSurge Clinics For Health Care": "اختر عيادات CosmoSurge للرعاية الصحية",
   "Social": "التواصل",
   "Select Date... Make Sure You Clicked...": "إختر التاريخ...تأكد من النقر علي اليوم...",
-  "Select Offer First...": "إختر العرض قبل إختيار الموعد..."
+  "Select Offer First...": "إختر العرض قبل إختيار الموعد...",
+  "phone": "التليفون",
+  "landline": "الارضي",
+  "mobile": "الموبايل",
+  "Address": "العنوان",
+  "Hours": "مواعيد العمل",
+  "hours": "كل الايام عدا الجمعة من 4 مساء حتي 10 مساء"
 }

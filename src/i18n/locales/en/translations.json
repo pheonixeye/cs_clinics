@@ -28,7 +28,7 @@
   "Seamless Care": "Seamless Care",
   "At CosmoSurge Clinics, every aspect of your care is coordinated and teams of experts work together to provide exactly the care you need. What might take months elsewhere can often be done in days here.": "At CosmoSurge Clinics, every aspect of your care is coordinated and teams of experts work together to provide exactly the care you need. What might take months elsewhere can often be done in days here.",
   "Choose CosmoSurge": "Choose CosmoSurge",
-  "Contact Information": "Contact Information",
+  "Contact": "Contact",
   "address": "Zahraa El Maadi, El Nada Tower, 13th Sector, First Floor.",
   "GET DIRECTIONS": "GET DIRECTIONS",
   "Opening Hours": "Opening Hours",
@@ -128,5 +128,11 @@
   "Choose CosmoSurge Clinics For Health Care": "Choose CosmoSurge Clinics For Health Care",
   "Social": "Social",
   "Select Date... Make Sure You Clicked...": "Select Date... Make Sure You Clicked...",
-  "Select Offer First...": "Select Offer First..."
+  "Select Offer First...": "Select Offer First...",
+  "phone": "Phone",
+  "landline": "Landline",
+  "mobile": "Mobile",
+  "Address": "Address",
+  "Hours": "Opening Hours",
+  "hours": "All Weekdays Except Fridays from 4:00 P.M. to 10:00 P.M"
 }

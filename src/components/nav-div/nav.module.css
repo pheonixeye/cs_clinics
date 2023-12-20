@@ -1,13 +1,20 @@
 .navDiv {
-  display: flex;
+  display: grid;
   height: 100px;
-  flex-basis: content;
+  grid-template-rows: 1fr 25px;
+  grid-template-columns: 75px 1fr 1fr;
+  /* flex-basis: content; */
   width: 100%;
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
 }
 
 @media (max-width: 600px) {
   .navBar {
     display: none !important;
+  }
+  .navDiv {
+    grid-template-columns: 75px 1fr;
   }
   .clinicLogo {
     margin-inline-start: 0px;
@@ -18,6 +25,7 @@
 }
 
 .logoContainer {
+  grid-row: 1 /2;
   width: 75px;
   height: 75px;
   border-radius: 37.5px;
@@ -25,21 +33,26 @@
 }
 
 .clinicLogo {
+  grid-row: 1 /2;
   width: 75px;
   height: 75px;
 }
 
 .clinicNameText {
+  grid-row: 1 /2;
   margin: 0px 0px;
   margin-inline-start: 30px;
   text-align: center;
   backdrop-filter: blur(20px);
   align-self: end;
+  justify-self: flex-start;
 }
 
 .navBar {
+  grid-row: 1 /2;
   display: flex;
-  margin-inline-start: 30%;
+  /* margin-inline-start: 30%; */
+  /* justify-content: flex-start; */
 }
 
 .navBar ul {
@@ -53,4 +66,10 @@
 
 .navBar ul a {
   margin-inline-start: 40px;
+}
+
+.navSeparator {
+  background-color: var(--sinopia);
+  grid-row: 2 / 3;
+  grid-column: 1 / -1;
 }
