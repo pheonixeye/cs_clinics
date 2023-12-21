@@ -33,9 +33,9 @@
   "GET DIRECTIONS": "GET DIRECTIONS",
   "Opening Hours": "Opening Hours",
   "The physicians and clinical staff at CosmoSurge Clinics have been providing comprehensive medical care to El-Maadi for over 4 years. We are located in the Zahraa El Maadi, close to Hub-50 Mall. We are sure our team’s range of expertise will make you and your family feel comfortable with your visit.": "The physicians and clinical staff at CosmoSurge Clinics have been providing comprehensive medical care to El-Maadi for over 4 years. We are located in the Zahraa El Maadi, close to Hub-50 Mall. We are sure our team’s range of expertise will make you and your family feel comfortable with your visit.",
-  "Copyright © 2021 @ CosmoSurge Clinics Medical Center.": "Copyright © 2021 @ CosmoSurge Clinics Medical Center.",
+  "copyright": "All Rights Reserved © Cs Clinics Medical Center",
+  "design": "Designed by",
   "All right reserved.": "All right reserved.",
-  "Designed by Dr.Kareem Zaher.": "Designed by Dr.Kareem Zaher.",
   "CALL US : 02-25165064": "CALL US : 02-25165064",
   "FOLLOW US": "FOLLOW US",
   "GET OUR APP": "GET OUR APP",
@@ -134,5 +134,10 @@
   "mobile": "Mobile",
   "Address": "Address",
   "Hours": "Opening Hours",
-  "hours": "All Weekdays Except Fridays from 4:00 P.M. to 10:00 P.M"
+  "hours": "All Weekdays Except Fridays from 4:00 P.M. to 10:00 P.M",
+  "social": "Social",
+  "csc": "Cs Clinics",
+  "home": "Home",
+  "ourdoctors": "Our Doctors",
+  "contact": "Contact"
 }

@@ -31,13 +31,14 @@ html {
   --princeton-orange: #f48c06ff;
   --orange-web: #faa307ff;
   --selective-yellow: #ffba08ff;
+  --facebook-blue: #4267b2;
 }
 
 #root {
-  max-width: 1280px;
+  max-width: 1440px;
   text-align: center;
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
+  /* grid-column: 1 / -1;
+  grid-row: 1 / -1; */
   display: grid;
   grid-template-columns: 1fr 150px;
   grid-template-rows: 100px max-content max-content max-content;

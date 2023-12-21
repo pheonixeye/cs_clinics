@@ -1,11 +1,16 @@
 import heroImg from "../../assets/hero.webp";
 import styles from "./hero.module.css";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const lang = i18n.language;
+
+  const handleNavigate = () => {
+    navigate("/doctors");
+  };
 
   return (
     <div className={styles.heroContainer}>
@@ -14,7 +19,7 @@ const Hero = () => {
         alt="hero img"
         className={styles.heroImage + ` ${lang === "ar" ? styles.flipImg : ""}`}
       />
-      <button className={"btn" + " " + styles.ctaBtn}>
+      <button className={"btn" + " " + styles.ctaBtn} onClick={handleNavigate}>
         {t("Book Appointment")}
       </button>
       <div className={styles.heroTag}>

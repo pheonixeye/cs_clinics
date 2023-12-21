@@ -3,9 +3,9 @@ import { BsWhatsapp, BsGlobe, BsArrowUpCircle } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
 import styles from "./ActionsSwitch.module.css";
 import PropTypes from "prop-types";
+import { Launcher } from "../../../../url_launcher";
 
 const ActionsSwitch = (props) => {
-  // const { t } = useTranslation();
   const { i18n } = useTranslation();
 
   function changeLanguage() {
@@ -31,6 +31,10 @@ const ActionsSwitch = (props) => {
     });
   };
 
+  const callWhatsapp = () => {
+    window.open(Launcher.whatsapp, "_blank");
+  };
+
   return (
     <div className={styles.actionsContainer}>
       <button
@@ -39,7 +43,10 @@ const ActionsSwitch = (props) => {
       >
         <BsArrowUpCircle />
       </button>
-      <button className={`btn whatsapp-btn ${styles.actionButton}`}>
+      <button
+        className={`btn whatsapp-btn ${styles.actionButton}`}
+        onClick={callWhatsapp}
+      >
         <BsWhatsapp />
       </button>
       <button

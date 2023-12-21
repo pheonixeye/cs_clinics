@@ -33,9 +33,9 @@
   "GET DIRECTIONS": "احصل على الاتجاهات",
   "Opening Hours": "ساعات العمل",
   "The physicians and clinical staff at CosmoSurge Clinics have been providing comprehensive medical care to El-Maadi for over 4 years. We are located in the Zahraa El Maadi, close to Hub-50 Mall. We are sure our team’s range of expertise will make you and your family feel comfortable with your visit.": "يقدم الأطباء والموظفون الإكلينيكيون في عيادات CosmoSurge رعاية طبية شاملة للمعادي منذ أكثر من 4 سنوات. نحن موجودون في زهراء المعادي ، بالقرب من مول Hub-50. نحن على يقين من أن مجموعة خبرات فريقنا ستجعلك أنت وعائلتك تشعر بالراحة في زيارتك.",
-  "Copyright © 2021 @ CosmoSurge Clinics Medical Center.": "حقوق النشر © 2021 @ CosmoSurge Clinics Medical Center.",
+  "copyright": "جميع حقوق النشر محفوظة - عيادات سي اس",
+  "design": "تصميم و تنفيذ",
   "All right reserved.": "جميع الحقوق محفوظة.",
-  "Designed by Dr.Kareem Zaher.": "تصميم الدكتور كريم زاهر.",
   "CALL US : 02-25165064": "اتصل بنا: 02-25165064",
   "FOLLOW US": "تابعنا",
   "GET OUR APP": "حمل التطبيق",
@@ -134,5 +134,10 @@
   "mobile": "الموبايل",
   "Address": "العنوان",
   "Hours": "مواعيد العمل",
-  "hours": "كل الايام عدا الجمعة من 4 مساء حتي 10 مساء"
+  "hours": "كل الايام عدا الجمعة من 4 مساء حتي 10 مساء",
+  "social": "تابعنا علي",
+  "csc": "عيادات سي اس",
+  "home": "الرئيسية",
+  "ourdoctors": "الأطباء",
+  "contact": "التواصل"
 }

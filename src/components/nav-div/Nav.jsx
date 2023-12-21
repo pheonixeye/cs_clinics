@@ -1,25 +1,27 @@
 import styles from "./nav.module.css";
 import logo from "../../../logo.ico";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Nav = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className={styles.navDiv}>
         <div className={styles.logoContainer}>
           <img className={styles.clinicLogo} src={logo} alt="clinic logo" />
         </div>
-        <h1 className={styles.clinicNameText}>Cs Clinics</h1>
+        <h1 className={styles.clinicNameText}>{t("csc")}</h1>
         <nav className={styles.navBar}>
           <ul>
             <Link to={"/"} title="Home">
-              Home
+              {t("home")}
             </Link>
             <Link to={"/doctors"} title="Our Doctors">
-              Our Doctors
+              {t("ourdoctors")}
             </Link>
             <Link to={"/contact"} title="Contact">
-              Contact
+              {t("contact")}
             </Link>
           </ul>
         </nav>

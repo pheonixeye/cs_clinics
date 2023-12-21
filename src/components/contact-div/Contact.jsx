@@ -7,6 +7,7 @@ import {
   BsFillPinMapFill,
   BsClockHistory,
 } from "react-icons/bs";
+import { Launcher } from "../../url_launcher";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
@@ -16,10 +17,7 @@ const Contact = () => {
     <div className={styles.contactDiv}>
       <h2>{t("Contact")}</h2>
       <div className={styles.mapDiv}>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.331943929424!2d31.313849814591773!3d29.969888929046775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458397cfe331491%3A0xf55e2d037185129b!2sCosmoSurge%20Clinics!5e0!3m2!1sen!2seg!4v1621166318880!5m2!1sen!2seg"
-          loading="lazy"
-        ></iframe>
+        <iframe src={Launcher.iframe} loading="lazy"></iframe>
       </div>
       <div className={styles.infoDiv}>
         <h3>
@@ -31,7 +29,7 @@ const Contact = () => {
         </h3>
         <h4>
           {"----- "}
-          <Link to="tel:+201021646576" target={"_blank"}>
+          <Link to={Launcher.mobile} target={"_blank"}>
             01021646574
           </Link>
         </h4>
@@ -43,8 +41,8 @@ const Contact = () => {
         </h3>
         <h4>
           {"----- "}
-          <Link to="tel:+225165064" target={"_blank"}>
-            25165064
+          <Link to={Launcher.landline} target={"_blank"}>
+            225165064
           </Link>
         </h4>
         <h3>
@@ -55,10 +53,7 @@ const Contact = () => {
         </h3>
         <h4>
           {"----- "}
-          <Link
-            to="https://maps.app.goo.gl/ygnseja3EHRXq9E78"
-            target={"_blank"}
-          >
+          <Link to={Launcher.location} target={"_blank"}>
             {t("address")}
           </Link>
         </h4>

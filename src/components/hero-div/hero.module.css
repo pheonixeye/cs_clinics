@@ -36,6 +36,7 @@
 .ctaBtn {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  z-index: 7;
 }
 
 .heroTag {
