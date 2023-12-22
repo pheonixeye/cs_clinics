@@ -2,12 +2,22 @@ import PropTypes from "prop-types";
 import styles from "./doctorCard.module.css";
 import { useTranslation } from "react-i18next";
 import nullDoc from "../../../../assets/doc.webp";
+import { useNavigate } from "react-router-dom";
 
 const DoctorCard = (props) => {
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language === "en";
+  const navigate = useNavigate();
+
+  const handleDocClick = (docid, doctor) => {
+    navigate(`/doctors/${docid}`, { state: { ...doctor } });
+  };
+
   return (
-    <div className={styles.doctorCard}>
+    <div
+      className={styles.doctorCard}
+      onClick={() => handleDocClick(props.doctor._id, props.doctor)}
+    >
       <div className={styles.imgContainer}>
         <img
           src={

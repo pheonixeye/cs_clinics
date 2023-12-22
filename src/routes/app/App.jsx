@@ -1,7 +1,3 @@
-import { Helmet } from "react-helmet";
-import Hero from "../../components/hero-div/hero";
-import OurDoctors from "../../components/doctors-div/OurDoctors";
-import Contact from "../../components/contact-div/Contact";
 import Footer from "../../components/footer-div/Footer";
 import ActionsSwitch from "./components/ActionsSwitch/ActionsSwitch";
 import SideBar from "./components/sidebar/SideBar";
@@ -11,6 +7,11 @@ import { useState } from "react";
 import Separator from "../app/components/Separator/Separator";
 import Social from "../../components/social/Social";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Homepage from "../Homepage/Homepage";
+import Doctors from "../doctors/Doctors";
+import ContactPage from "../Contact/ContactPage";
+import DoctorPage from "../doctor/DoctorPage";
+import NotFoundPage from "../NotFound/NotFound";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,58 +21,14 @@ function App() {
   };
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Home</title>
-        <link rel="canonical" href="http://mysite.com/" />
-        {/*TODO:add complete head seo related tags*/}
-      </Helmet>
-      {/*TODO: nav div*/}
-
       <Router>
         <Nav />
         <Routes>
-          <Route
-            path="/"
-            index={true}
-            element={
-              <div className={styles.mainContainer}>
-                {/*TODO: hero div*/}
-                <Hero />
-                <Separator isTransparent={true} />
-                <Separator />
-                {/*TODO: doctors div => doctor page*/}
-                <OurDoctors />
-                <Separator isTransparent={true} />
-                <Separator />
-                {/*TODO: contact div*/}
-                <Contact />
-                <Separator isTransparent={true} />
-                <Separator />
-              </div>
-            }
-          ></Route>
-          <Route
-            path="doctors"
-            element={
-              <>
-                <OurDoctors />
-                <Separator isTransparent={true} />
-                <Separator />
-              </>
-            }
-          ></Route>
-          <Route
-            path="contact"
-            element={
-              <>
-                <Contact />
-                <Separator isTransparent={true} />
-                <Separator />
-              </>
-            }
-          ></Route>
-          <Route path="doctors/:docid"></Route>
+          <Route path="/" index={true} element={<Homepage />}></Route>
+          <Route path="doctors" element={<Doctors />}></Route>
+          <Route path="contact" element={<ContactPage />}></Route>
+          <Route path="doctors/:docid" element={<DoctorPage />}></Route>
+          <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
         <div
           className={

@@ -1,6 +1,4 @@
 import styles from "./ourdoctors.module.css";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
 import LoadingIndicator from "./components/loading-indicator/LoadingIndicator";
 import DoctorCard from "./components/doctor-card/DoctorCard";
 import { useTranslation } from "react-i18next";

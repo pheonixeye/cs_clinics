@@ -61,17 +61,6 @@
   transition: opacity 1s linear 0s, margin-inline-start 1s linear 0s;
 }
 
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-  grid-column: 1 / -1;
-  grid-row: 2 / -1;
-  margin: 0px 0px;
-  height: 100%;
-}
-
 .bottomDiv {
   display: flex;
   flex-direction: column;

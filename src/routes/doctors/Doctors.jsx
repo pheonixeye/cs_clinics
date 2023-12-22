@@ -1,34 +1,21 @@
 import { Helmet } from "react-helmet";
-import { useNavigate, useLoaderData } from "react-router-dom";
+import OurDoctors from "../../components/doctors-div/OurDoctors";
+import Separator from "../../routes/app/components/Separator/Separator";
 
-function Doctors() {
-  const { data } = useLoaderData();
-//   console.log(data);
-  const navigate = useNavigate();
-
-  const handleNavigate = (docid, doctor) => {
-    navigate(`/doctors/${docid}`, { state: { doctor } });
-  };
-
+const Doctors = () => {
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Doctors</title>
         <link rel="canonical" href="http://mysite.com/doctors" />
+        {/*TODO:add complete head seo related tags*/}
       </Helmet>
-      <div>Doctors Page</div>
-      {data.data.map((doctor, index) => {
-        return (
-          <li key={index}>
-            <button onClick={()=>handleNavigate(doctor._id, doctor)}>
-              {doctor.docname}
-            </button>
-          </li>
-        );
-      })}
+      <OurDoctors />
+      <Separator isTransparent={true} />
+      <Separator />
     </>
   );
-}
+};
 
 export default Doctors;
