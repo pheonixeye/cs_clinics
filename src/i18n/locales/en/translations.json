@@ -139,5 +139,11 @@
   "csc": "Cs Clinics",
   "home": "Home",
   "ourdoctors": "Our Doctors",
-  "contact": "Contact"
+  "contact": "Contact",
+  "404": "404 - Server Error, Please Try Again Later...",
+  "confirm": "Confirm",
+  "clear": "Clear",
+  "selectWeekday": "Select Weekday",
+  "Date": "Date",
+  "sms": "Your Booking Will Be Confirmed Via SMS"
 }

@@ -24,10 +24,12 @@
     "published": true,
     "schedule": [
       { "day": "Monday", "intday": 1, "start": 18, "end": 21 },
-      { "day": "Wednesday", "intday": 3, "start": 18, "end": 21 },
-      { "day": "Saturday", "intday": 6, "start": 18, "end": 22 },
       { "day": "Tuesday", "intday": 2, "start": 18, "end": 22 },
-      { "intday": 4, "day": "Thursday", "start": 18, "end": 22 }
+      { "day": "Wednesday", "intday": 3, "start": 18, "end": 21 },
+      { "intday": 4, "day": "Thursday", "start": 18, "end": 22 },
+      { "day": "Friday", "intday": 5, "start": 18, "end": 22 },
+      { "intday": 6, "day": "Saturday", "start": 18, "end": 22 },
+      { "intday": 7, "day": "Sunday", "start": 18, "end": 22 }
     ],
     "reviews": []
   },

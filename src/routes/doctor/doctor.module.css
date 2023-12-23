@@ -106,6 +106,77 @@
 .schCard h3 {
   margin: 4px;
 }
+
+.calendarDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 20px;
+}
+
+.calendarBody {
+  color: var(--rich-black) !important;
+}
+
+.calendarView {
+  grid-column: 1 / 2;
+  grid-row: 1 / -1;
+  margin: auto;
+}
+
+.calendarView h2 {
+  margin: 10px 0px;
+}
+
+.userInfoView {
+  grid-column: 2 / 3;
+  grid-row: 1 / -1;
+  display: grid;
+  margin: auto;
+  grid-template-columns: 1fr;
+  height: 100%;
+}
+
+.userInfoView h2 {
+  margin: 10px 0px;
+  grid-column: 1 / -1;
+}
+.userInfoView h3 {
+  margin: 10px 0px;
+  grid-column: 1 / -1;
+}
+
+.userInfoView input {
+  grid-column: 1 / -1;
+  background-color: white;
+  /* border: none; */
+  border-radius: 8px;
+  border: 3px solid rgba(73, 114, 133, 0.6);
+  color: var(--rich-black);
+  font-size: 1.4em;
+  font-weight: 300;
+  padding: 20px 0px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.userInfoView form {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+form .okBtn {
+  grid-column: 1 /2;
+  margin-top: 10px;
+}
+form .clearBtn {
+  grid-column: 1 /2;
+  margin-top: 30px;
+}
+
 @media (max-width: 600px) {
   .docInfoContainer {
     grid-template-columns: 1fr;
@@ -123,8 +194,17 @@
     grid-column: 1 / -1;
     grid-row: 3 / 4;
   }
-}
+  .calendarDiv {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .calendarView {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+  }
 
-.calenderDiv {
-  display: flex;
+  .userInfoView {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+  }
 }

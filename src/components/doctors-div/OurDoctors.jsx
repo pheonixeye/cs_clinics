@@ -8,10 +8,18 @@ import { MAINQUERY, getDoctors } from "../../routes/get_doctors";
 const OurDoctors = () => {
   const { t } = useTranslation();
 
-  const { data: doctors, isLoading } = useQuery({
+  const {
+    data: doctors,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: [MAINQUERY],
     queryFn: getDoctors,
   });
+
+  if (error) {
+    return <h2>{t("404")}</h2>;
+  }
 
   return (
     <div className={styles.ourDoctorsDiv}>
