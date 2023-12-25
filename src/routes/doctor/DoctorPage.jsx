@@ -16,6 +16,19 @@ function DoctorPage() {
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language === "en";
 
+  const fromTo = (hour) => {
+    if (!hour) "";
+    if (hour > 12) {
+      return `${hour - 12} ${t("P.M.")}`;
+    } else if (hour < 12) {
+      return `${hour} ${t("A.M.")}`;
+    } else if (hour == 12) {
+      return `${hour} ${t("P.M.")}`;
+    } else if (hour == 0) {
+      return `${hour} ${t("A.M.")}`;
+    }
+  };
+
   const [app, setApp] = useState(
     new Appointment({
       docid: doctor._id,
@@ -67,6 +80,8 @@ function DoctorPage() {
     schedRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const d = new Date();
+
   return (
     <>
       <Helmet>
@@ -80,6 +95,7 @@ function DoctorPage() {
       <div key={"a"} className={styles.pageContainer}>
         <div key={"a1"} className={styles.overlayContainer}>
           {/**TODO: make alert message on error & confirm +/- use as loading indicator */}
+          <div className={styles.alertBox}></div>
         </div>
         <div key={"a2"} className={styles.docInfoContainer}>
           <div key={"a2a"} className={styles.imgContainer}>
@@ -138,22 +154,6 @@ function DoctorPage() {
             <Calendar
               className={styles.calendarBody}
               locale={i18n.language}
-              tileDisabled={({ date }) => {
-                const d = new Date();
-                d.setHours(19);
-                const refactoredD = new Date(
-                  date.getFullYear(),
-                  date.getMonth(),
-                  date.getDate(),
-                  19
-                );
-                // console.log("ofToday => " + d);
-                // console.log("refactored => " + refactoredD);
-                return (
-                  refactoredD < d ||
-                  refactoredD.getDay() !== app.schedule?.intday
-                );
-              }}
               onClickDay={(value) =>
                 selectDate(
                   new Date(
@@ -164,6 +164,16 @@ function DoctorPage() {
                   )
                 )
               }
+              tileDisabled={({ date }) => {
+                if (app.schedule?.intday == 7 && date.getDay() === 0) {
+                  if (date < d) {
+                    return true;
+                  }
+                  return false;
+                } else {
+                  return date < d || app.schedule?.intday !== date.getDay();
+                }
+              }}
             />
           </div>
           <div key={"a3b"} ref={infoRef} className={styles.userInfoView}>
@@ -189,6 +199,8 @@ function DoctorPage() {
                 name="phone"
                 id="phone"
                 required
+                minLength={11}
+                maxLength={11}
                 placeholder={t("Enter Your Phone")}
                 // value={app.phone}
                 onChange={(e) =>
@@ -205,10 +217,10 @@ function DoctorPage() {
               </h3>
               <h3>
                 {t("From")} :{" "}
-                {app.schedule?.start ? t(`${app.schedule?.start}`) : ""}
+                {app.schedule?.start ? fromTo(app.schedule?.start) : ""}
               </h3>
               <h3>
-                {t("To")} : {app.schedule?.end ? t(`${app.schedule?.end}`) : ""}
+                {t("To")} : {app.schedule?.end ? fromTo(app.schedule?.end) : ""}
               </h3>
               <h3>
                 {t("Date")} :{" "}

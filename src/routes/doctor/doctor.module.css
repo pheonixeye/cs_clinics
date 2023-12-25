@@ -5,14 +5,32 @@
 }
 
 .overlayContainer {
-  display: none;
-  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  visibility: visible;
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   width: 100%;
   height: 100%;
   background-color: var(--sinopia);
-  opacity: 0.3;
+  opacity: 0.8;
+  align-items: center;
+  justify-content: center;
+}
+
+.alertBox {
+  z-index: 7;
+  margin: auto;
+  display: flex;
+  position: fixed;
+  top: 40vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 300px;
+  background-color: var(--rich-black);
+  color: white;
 }
 
 .docInfoContainer {
