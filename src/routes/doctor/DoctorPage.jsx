@@ -8,7 +8,8 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Separator from "../app/components/Separator/Separator";
 import { Appointment } from "../../models/Appointment";
-// import { BsFillPersonFill, BsPhoneVibrate } from "react-icons/bs";
+import AlertBox from "./AlertBox/AlertBox";
+import axios from "axios";
 
 function DoctorPage() {
   const location = useLocation();
@@ -58,12 +59,14 @@ function DoctorPage() {
   const infoRef = useRef(null);
   const schedRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // setApp({
     //   ...app,
     //   date: app.date.toISOString(),
     // });
+
+    await validate(app, sendRequest);
     console.log(app);
   };
 
@@ -82,6 +85,76 @@ function DoctorPage() {
 
   const d = new Date();
 
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
+  const [isAlertLoading, setIsAlertLoading] = useState(false);
+  const [isAlertError, setIsAlertError] = useState({});
+
+  const validate = async (app, sendRequest) => {
+    if (
+      app.name == null ||
+      app.name.trim().length == 0 ||
+      app.phone == null ||
+      app.phone.trim().length == 0
+    ) {
+      setIsAlertVisible(true);
+      setIsAlertError({
+        isError: true,
+        msg: {
+          title: t("miss_info"),
+          msg: t("miss_info_msg"),
+        },
+      });
+      return false;
+    } else if (app.phone.trim().length != 11) {
+      setIsAlertVisible(true);
+      setIsAlertError({
+        isError: true,
+        msg: {
+          title: t("wrong_num"),
+          msg: t("wrong_num_msg"),
+        },
+      });
+      return false;
+    } else if (app.date == null || app.date.length == 0) {
+      setIsAlertVisible(true);
+      setIsAlertError({
+        isError: true,
+        msg: {
+          title: t("app_info_miss"),
+          msg: t("app_info_miss_msg"),
+        },
+      });
+      return false;
+    } else {
+      await sendRequest(app);
+      setIsAlertVisible(true);
+      setIsAlertError({
+        isError: false,
+        msg: {
+          title: t("app_conf"),
+          msg: t("check_sms"),
+        },
+      });
+      return true;
+    }
+  };
+  const sendRequest = async (app) => {
+    setIsAlertLoading(true);
+    setIsAlertVisible(true);
+    const newApp = {
+      ...app,
+      date: app.date.toISOString(),
+    };
+    axios
+      .post("https://sms-notifier.fly.dev/sms-notify/01021646574", newApp, {
+        headers: {
+          "Content-Type": "Application/json",
+        },
+      })
+      .then(() => {
+        setIsAlertLoading(false);
+      });
+  };
   return (
     <>
       <Helmet>
@@ -95,7 +168,14 @@ function DoctorPage() {
       <div key={"a"} className={styles.pageContainer}>
         <div key={"a1"} className={styles.overlayContainer}>
           {/**TODO: make alert message on error & confirm +/- use as loading indicator */}
-          <div className={styles.alertBox}></div>
+          <AlertBox
+            isVisible={isAlertVisible}
+            setIsVisible={setIsAlertVisible}
+            isError={isAlertError}
+            setIsError={setIsAlertError}
+            isLoading={isAlertLoading}
+            setIsLoading={setIsAlertLoading}
+          />
         </div>
         <div key={"a2"} className={styles.docInfoContainer}>
           <div key={"a2a"} className={styles.imgContainer}>

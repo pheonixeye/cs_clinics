@@ -1,0 +1,47 @@
+.alertBox {
+  z-index: 7;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  visibility: hidden;
+  position: fixed;
+  top: 30vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 0px;
+  width: 0vw;
+  background-color: var(--persimmon);
+  color: white;
+  border-radius: 12px;
+  transition: visibility 0.3s linear 0s, width 0.3s linear 0s,
+    height 0.3s linear 0s;
+}
+
+.alertBox.isShown {
+  height: 300px;
+  width: 75vw;
+  visibility: visible;
+}
+
+.alertTitle {
+  display: flex;
+  margin: auto;
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+}
+
+.alertMsg {
+  display: flex;
+  margin: auto;
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
+}
+
+.alertAction {
+  display: flex;
+  margin: auto;
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+}
