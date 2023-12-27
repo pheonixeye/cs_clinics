@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import Hero from "../../components/hero-div/hero";
+import Hero from "../../components/hero-div/Hero";
 import styles from "./homepage.module.css";
 import OurDoctors from "../../components/doctors-div/OurDoctors";
 import Contact from "../../components/contact-div/Contact";
