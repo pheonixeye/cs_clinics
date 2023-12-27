@@ -1,8 +1,7 @@
 import styles from "./nav.module.css";
-import logo from "../../../logo.ico";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import logo from "../../assets/logo.png";
 const Nav = () => {
   const { t } = useTranslation();
   return (
