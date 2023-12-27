@@ -169,11 +169,14 @@ function DoctorPage() {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Doctor {doctor.docname} Page</title>
+        <title>
+          {t("doc") + " "} {isEnglish ? doctor.docname : doctor.docname_a}
+        </title>
         <link
           rel="canonical"
-          href={`http://mysite.com/doctors/${doctor._id}`}
+          href={`https://cs-clinics.pages.dev/doctors/${doctor._id}/confirm`}
         />
+        <meta name="robots" content="all" />
       </Helmet>
       <div key={"a"} className={styles.pageContainer}>
         <div key={"a1"} className={styles.overlayContainer}>

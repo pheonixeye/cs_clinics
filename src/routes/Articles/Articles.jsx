@@ -8,8 +8,9 @@ const Articles = () => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Articles</title>
-        <link rel="canonical" href="http://mysite.com/articles" />
+        <title>{t("articles")}</title>
+        <link rel="canonical" href="https://cs-clinics.pages.dev/articles" />
+        <meta name="robots" content="all" />
         {/*TODO:add complete head seo related tags*/}
       </Helmet>
       <div className={styles.articlesDiv}>

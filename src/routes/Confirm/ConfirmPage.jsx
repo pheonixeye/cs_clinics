@@ -27,8 +27,9 @@ const ConfirmPage = () => {
         <title>{t("app_conf")}</title>
         <link
           rel="canonical"
-          href={`http://mysite.com/doctors/${doc._id}/confirm`}
+          href={`https://cs-clinics.pages.dev/doctors/${doc._id}/confirm`}
         />
+        <meta name="robots" content="all" />
         {/*TODO:add complete head seo related tags*/}
       </Helmet>
       <div className={styles.confirmDiv}>
