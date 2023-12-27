@@ -1,6 +1,7 @@
 import styles from "./SideBar.module.css";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SideBar = (props) => {
   const navigate = useNavigate();
@@ -8,6 +9,9 @@ const SideBar = (props) => {
     navigate(`${path}`);
     props.openCloseDrawer();
   }
+
+  const { t } = useTranslation();
+
   return (
     <div
       className={
@@ -16,13 +20,16 @@ const SideBar = (props) => {
     >
       <ul>
         <button className="btn" onClick={() => handleClick("/")}>
-          Home
+          {t("Home")}
         </button>
         <button className="btn" onClick={() => handleClick("/doctors")}>
-          Doctors
+          {t("ourdoctors")}
         </button>
         <button className="btn" onClick={() => handleClick("/contact")}>
-          Contact
+          {t("Contact")}
+        </button>
+        <button className="btn" onClick={() => handleClick("/articles")}>
+          {t("articles")}
         </button>
       </ul>
     </div>

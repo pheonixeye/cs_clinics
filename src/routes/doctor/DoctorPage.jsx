@@ -10,25 +10,19 @@ import Separator from "../app/components/Separator/Separator";
 import { Appointment } from "../../models/Appointment";
 import AlertBox from "./AlertBox/AlertBox";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { fromTo } from "../../functions/timeFunction";
 
 function DoctorPage() {
   const location = useLocation();
   const doctor = location.state;
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language === "en";
+  const navigate = useNavigate();
 
-  const fromTo = (hour) => {
-    if (!hour) "";
-    if (hour > 12) {
-      return `${hour - 12} ${t("P.M.")}`;
-    } else if (hour < 12) {
-      return `${hour} ${t("A.M.")}`;
-    } else if (hour == 12) {
-      return `${hour} ${t("P.M.")}`;
-    } else if (hour == 0) {
-      return `${hour} ${t("A.M.")}`;
-    }
-  };
+  if (doctor._id == null) {
+    navigate("/404");
+  }
 
   const [app, setApp] = useState(
     new Appointment({
@@ -61,10 +55,6 @@ function DoctorPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setApp({
-    //   ...app,
-    //   date: app.date.toISOString(),
-    // });
 
     await validate(app, sendRequest);
     console.log(app);
@@ -100,8 +90,8 @@ function DoctorPage() {
       setIsAlertError({
         isError: true,
         msg: {
-          title: t("miss_info"),
-          msg: t("miss_info_msg"),
+          title: "miss_info",
+          msg: "miss_info_msg",
         },
       });
       return false;
@@ -110,8 +100,8 @@ function DoctorPage() {
       setIsAlertError({
         isError: true,
         msg: {
-          title: t("wrong_num"),
-          msg: t("wrong_num_msg"),
+          title: "wrong_num",
+          msg: "wrong_num_msg",
         },
       });
       return false;
@@ -120,8 +110,8 @@ function DoctorPage() {
       setIsAlertError({
         isError: true,
         msg: {
-          title: t("app_info_miss"),
-          msg: t("app_info_miss_msg"),
+          title: "app_info_miss",
+          msg: "app_info_miss_msg",
         },
       });
       return false;
@@ -131,8 +121,8 @@ function DoctorPage() {
       setIsAlertError({
         isError: false,
         msg: {
-          title: t("app_conf"),
-          msg: t("check_sms"),
+          title: "app_conf",
+          msg: "check_sms",
         },
       });
       return true;
@@ -145,6 +135,7 @@ function DoctorPage() {
       ...app,
       date: app.date.toISOString(),
     };
+
     axios
       .post("https://sms-notifier.fly.dev/sms-notify/01021646574", newApp, {
         headers: {
@@ -153,7 +144,26 @@ function DoctorPage() {
       })
       .then(() => {
         setIsAlertLoading(false);
+      })
+      .catch(() => {
+        setIsAlertLoading(false);
+        setIsAlertError({
+          isError: true,
+          msg: {
+            title: "conn_error_title",
+            msg: "conn_error_msg",
+          },
+        });
       });
+  };
+
+  const navToConfirmApp = () => {
+    navigate(`/doctors/${doctor._id}/confirm`, {
+      state: {
+        doc: doctor,
+        app: app,
+      },
+    });
   };
   return (
     <>
@@ -175,6 +185,7 @@ function DoctorPage() {
             setIsError={setIsAlertError}
             isLoading={isAlertLoading}
             setIsLoading={setIsAlertLoading}
+            navToConfirmApp={navToConfirmApp}
           />
         </div>
         <div key={"a2"} className={styles.docInfoContainer}>
@@ -218,7 +229,7 @@ function DoctorPage() {
                 >
                   <h2>{t(sch.day)}</h2>
                   <h3>
-                    {sch.start} : {sch.end}
+                    {fromTo(t, sch.start)} : {fromTo(t, sch.end)}
                   </h3>
                 </div>
               );
@@ -297,10 +308,11 @@ function DoctorPage() {
               </h3>
               <h3>
                 {t("From")} :{" "}
-                {app.schedule?.start ? fromTo(app.schedule?.start) : ""}
+                {app.schedule?.start ? fromTo(t, app.schedule?.start) : ""}
               </h3>
               <h3>
-                {t("To")} : {app.schedule?.end ? fromTo(app.schedule?.end) : ""}
+                {t("To")} :{" "}
+                {app.schedule?.end ? fromTo(t, app.schedule?.end) : ""}
               </h3>
               <h3>
                 {t("Date")} :{" "}

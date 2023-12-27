@@ -2,26 +2,11 @@
   display: grid;
   height: 100px;
   grid-template-rows: 1fr 25px;
-  grid-template-columns: 75px 1fr 1fr;
+  grid-template-columns: 75px 0.75fr 1fr;
   /* flex-basis: content; */
   width: 100%;
   grid-column: 1 / -1;
   grid-row: 1 / 2;
-}
-
-@media (max-width: 600px) {
-  .navBar {
-    display: none !important;
-  }
-  .navDiv {
-    grid-template-columns: 75px 1fr;
-  }
-  .clinicLogo {
-    margin-inline-start: 0px;
-  }
-  .logoContainer {
-    margin-inline-start: 10px;
-  }
 }
 
 .logoContainer {
@@ -72,4 +57,22 @@
   background-color: var(--sinopia);
   grid-row: 2 / 3;
   grid-column: 1 / -1;
+}
+
+@media (max-width: 600px) {
+  .navBar {
+    display: none !important;
+  }
+  .navDiv {
+    grid-template-columns: 75px 1fr;
+  }
+  .clinicLogo {
+    margin-inline-start: 0px;
+  }
+  .logoContainer {
+    margin-inline-start: 10px;
+  }
+  .clinicNameText {
+    font-size: 2.5rem;
+  }
 }

@@ -12,6 +12,8 @@ import Doctors from "../doctors/Doctors";
 import ContactPage from "../Contact/ContactPage";
 import DoctorPage from "../doctor/DoctorPage";
 import NotFoundPage from "../NotFound/NotFound";
+import ConfirmPage from "../Confirm/ConfirmPage";
+import Articles from "../Articles/Articles";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,8 +29,18 @@ function App() {
           <Route path="/" index={true} element={<Homepage />}></Route>
           <Route path="doctors" element={<Doctors />}></Route>
           <Route path="contact" element={<ContactPage />}></Route>
-          <Route path="doctors/:docid" element={<DoctorPage />}></Route>
+          <Route
+            path="doctors/:docid"
+            element={<DoctorPage />}
+            errorElement={<NotFoundPage />}
+          ></Route>
+          <Route
+            path="doctors/:docid/confirm"
+            element={<ConfirmPage />}
+          ></Route>
+          <Route path="articles" element={<Articles />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
+          <Route path="404" element={<NotFoundPage />}></Route>
         </Routes>
         <div
           className={

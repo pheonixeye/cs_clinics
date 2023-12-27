@@ -1,0 +1,9 @@
+.confirmDiv {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: auto;
+  justify-content: start;
+  align-items: start;
+  width: 100%;
+}

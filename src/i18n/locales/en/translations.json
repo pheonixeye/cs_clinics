@@ -145,5 +145,10 @@
   "clear": "Clear",
   "selectWeekday": "Select Weekday",
   "Date": "Date",
-  "sms": "Your Booking Will Be Confirmed Via SMS"
+  "sms": "Your Booking Will Be Confirmed Via SMS",
+  "conn_error_title": "Connection Error...",
+  "conn_error_msg": "Kindly Check Your Internet Connection & Try Again Later...",
+  "page_not_found": "404 - Page Not Found . . .",
+  "articles": "Articles",
+  "no_articles": "No Articles Yet . . ."
 }
