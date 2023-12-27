@@ -1,0 +1,4 @@
+ErrorDocument 404 /404
+DirectoryIndex index.html 
+IndexIgnore * 
+SetEnv TZ Africa/Cairo
