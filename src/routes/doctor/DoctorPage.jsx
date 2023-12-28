@@ -12,25 +12,39 @@ import AlertBox from "./AlertBox/AlertBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { fromTo } from "../../functions/timeFunction";
+import { useQuery } from "@tanstack/react-query";
+import { ONEDOCQUERY, getDoctor } from "../get_doctor";
+import LoadingIndicator from "../../components/doctors-div/components/loading-indicator/LoadingIndicator";
 
 function DoctorPage() {
   const location = useLocation();
-  const doctor = location.state;
+  const path = location.pathname;
+  const segments = path.split("/");
+  const docid = segments.at(-1);
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language === "en";
   const navigate = useNavigate();
 
-  if (doctor._id == null) {
-    navigate("/404");
-  }
+  const [app, setApp] = useState({});
 
-  const [app, setApp] = useState(
-    new Appointment({
-      docid: doctor._id,
-      docname: doctor.docname,
-      clinic: doctor.clinic,
-    })
-  );
+  const setInitialApp = () => {
+    setApp(
+      new Appointment({
+        docid: doctor._id,
+        docname: doctor.docname,
+        clinic: doctor.clinic,
+      })
+    );
+  };
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: [ONEDOCQUERY],
+    queryFn: () => getDoctor(docid),
+    enabled: location.state == undefined,
+    onCompleted: () => setInitialApp(),
+  });
+
+  let doctor = location.state ?? data;
 
   const selectDay = (schedule) => {
     setApp({
@@ -165,6 +179,14 @@ function DoctorPage() {
       },
     });
   };
+
+  if (error) {
+    return <h2>{t("404")}</h2>;
+  }
+
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
   return (
     <>
       <Helmet>
@@ -178,174 +200,186 @@ function DoctorPage() {
         />
         <meta name="robots" content="all" />
       </Helmet>
-      <div key={"a"} className={styles.pageContainer}>
-        <div key={"a1"} className={styles.overlayContainer}>
-          {/**TODO: make alert message on error & confirm +/- use as loading indicator */}
-          <AlertBox
-            isVisible={isAlertVisible}
-            setIsVisible={setIsAlertVisible}
-            isError={isAlertError}
-            setIsError={setIsAlertError}
-            isLoading={isAlertLoading}
-            setIsLoading={setIsAlertLoading}
-            navToConfirmApp={navToConfirmApp}
-          />
-        </div>
-        <div key={"a2"} className={styles.docInfoContainer}>
-          <div key={"a2a"} className={styles.imgContainer}>
-            <img
-              src={
-                doctor.avatar != null
-                  ? `data:image/png;base64, ${doctor.avatar}`
-                  : `${nullDoc}`
-              }
-              alt="doctor img"
+      {
+        <div key={"a"} className={styles.pageContainer}>
+          <div key={"a1"} className={styles.overlayContainer}>
+            {/**TODO: make alert message on error & confirm +/- use as loading indicator */}
+            <AlertBox
+              isVisible={isAlertVisible}
+              setIsVisible={setIsAlertVisible}
+              isError={isAlertError}
+              setIsError={setIsAlertError}
+              isLoading={isAlertLoading}
+              setIsLoading={setIsAlertLoading}
+              navToConfirmApp={navToConfirmApp}
             />
           </div>
-          <div key={"a2b"} className={styles.dataContainer}>
-            <h2>
-              <span>{`${t("doc")}  `}</span>
-              <br />
-              {`${isEnglish ? doctor.docname.toUpperCase() : doctor.docname_a}`}
-            </h2>
-            <h3>{isEnglish ? doctor.clinic.toUpperCase() : doctor.clinic_a}</h3>
-            {isEnglish
-              ? doctor.titles.map((title, index) => {
-                  return <h3 key={index + title}>{title}</h3>;
-                })
-              : doctor.titles_a.map((title, index) => {
-                  return <h3 key={index + title}>{title}</h3>;
-                })}
+          <div key={"a2"} className={styles.docInfoContainer}>
+            <div key={"a2a"} className={styles.imgContainer}>
+              <img
+                src={
+                  doctor.avatar != null
+                    ? `data:image/png;base64, ${doctor.avatar}`
+                    : `${nullDoc}`
+                }
+                alt="doctor img"
+              />
+            </div>
+            <div key={"a2b"} className={styles.dataContainer}>
+              <h2>
+                <span>{`${t("doc")}  `}</span>
+                <br />
+                {`${
+                  isEnglish ? doctor.docname.toUpperCase() : doctor.docname_a
+                }`}
+              </h2>
+              <h3>
+                {isEnglish ? doctor.clinic.toUpperCase() : doctor.clinic_a}
+              </h3>
+              {isEnglish
+                ? doctor.titles.map((title, index) => {
+                    return <h3 key={index + title}>{title}</h3>;
+                  })
+                : doctor.titles_a.map((title, index) => {
+                    return <h3 key={index + title}>{title}</h3>;
+                  })}
+            </div>
+            <div
+              ref={schedRef}
+              key={"a2c"}
+              className={styles.scheduleContainer}
+            >
+              <h2>{t("selectWeekday")}</h2>
+              {doctor.schedule.map((sch) => {
+                return (
+                  <div
+                    key={sch.intday + sch.day}
+                    className={
+                      styles.schCard +
+                      " " +
+                      (app.schedule && app.schedule == sch
+                        ? styles.selected
+                        : "")
+                    }
+                    onClick={() => selectDay(sch)}
+                  >
+                    <h2>{t(sch.day)}</h2>
+                    <h3>
+                      {fromTo(t, sch.start)} : {fromTo(t, sch.end)}
+                    </h3>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div ref={schedRef} key={"a2c"} className={styles.scheduleContainer}>
-            <h2>{t("selectWeekday")}</h2>
-            {doctor.schedule.map((sch) => {
-              return (
-                <div
-                  key={sch.intday + sch.day}
-                  className={
-                    styles.schCard +
-                    " " +
-                    (app.schedule && app.schedule == sch ? styles.selected : "")
-                  }
-                  onClick={() => selectDay(sch)}
-                >
-                  <h2>{t(sch.day)}</h2>
-                  <h3>
-                    {fromTo(t, sch.start)} : {fromTo(t, sch.end)}
-                  </h3>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <Separator key={"s1t"} isTransparent={true} />
-        <Separator key={"s1c"} />
-        <Separator key={"s2t"} isTransparent={true} />
-        <div key={"a3"} ref={dateRef} className={styles.calendarDiv}>
-          <div key={"a3a"} className={styles.calendarView}>
-            <h2>{t("Select Date")}</h2>
-            <Calendar
-              className={styles.calendarBody}
-              locale={i18n.language}
-              onClickDay={(value) =>
-                selectDate(
-                  new Date(
-                    value.getFullYear(),
-                    value.getMonth(),
-                    value.getDate(),
-                    app.schedule?.start
+          <Separator key={"s1t"} isTransparent={true} />
+          <Separator key={"s1c"} />
+          <Separator key={"s2t"} isTransparent={true} />
+          <div key={"a3"} ref={dateRef} className={styles.calendarDiv}>
+            <div key={"a3a"} className={styles.calendarView}>
+              <h2>{t("Select Date")}</h2>
+              <Calendar
+                className={styles.calendarBody}
+                locale={i18n.language}
+                onClickDay={(value) =>
+                  selectDate(
+                    new Date(
+                      value.getFullYear(),
+                      value.getMonth(),
+                      value.getDate(),
+                      app.schedule?.start
+                    )
                   )
-                )
-              }
-              tileDisabled={({ date }) => {
-                if (app.schedule?.intday == 7 && date.getDay() === 0) {
-                  if (date < d) {
-                    return true;
+                }
+                tileDisabled={({ date }) => {
+                  if (app.schedule?.intday == 7 && date.getDay() === 0) {
+                    if (date < d) {
+                      return true;
+                    }
+                    return false;
+                  } else {
+                    return date < d || app.schedule?.intday !== date.getDay();
                   }
-                  return false;
-                } else {
-                  return date < d || app.schedule?.intday !== date.getDay();
-                }
-              }}
-            />
-          </div>
-          <div key={"a3b"} ref={infoRef} className={styles.userInfoView}>
-            <h2>{t("Client Information")}</h2>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                required
-                placeholder={t("Enter Your Name")}
-                // value={app.name}
-                onChange={(e) =>
-                  setApp({
-                    ...app,
-                    name: e.target.value,
-                  })
-                }
+                }}
               />
+            </div>
+            <div key={"a3b"} ref={infoRef} className={styles.userInfoView}>
+              <h2>{t("Client Information")}</h2>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  required
+                  placeholder={t("Enter Your Name")}
+                  // value={app.name}
+                  onChange={(e) =>
+                    setApp({
+                      ...app,
+                      name: e.target.value,
+                    })
+                  }
+                />
 
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                required
-                minLength={11}
-                maxLength={11}
-                placeholder={t("Enter Your Phone")}
-                // value={app.phone}
-                onChange={(e) =>
-                  setApp({
-                    ...app,
-                    phone: e.target.value,
-                  })
-                }
-              />
-              <h3>
-                {t("Weekday")} :{" "}
-                {app.schedule?.day ? t(`${app.schedule?.day}`) : ""}{" "}
-                {/* {`${app.schedule?.intday}`} */}
-              </h3>
-              <h3>
-                {t("From")} :{" "}
-                {app.schedule?.start ? fromTo(t, app.schedule?.start) : ""}
-              </h3>
-              <h3>
-                {t("To")} :{" "}
-                {app.schedule?.end ? fromTo(t, app.schedule?.end) : ""}
-              </h3>
-              <h3>
-                {t("Date")} :{" "}
-                {app.date
-                  ? `${app.date?.getFullYear()} / ${
-                      app.date?.getMonth() + 1
-                    } / ${app.date?.getDate()}`
-                  : ""}
-              </h3>
-              {app.date != null ? <h3>{t("sms")}</h3> : null}
-              <button
-                className={`btn ${styles.okBtn}`}
-                // onClick={() => console.log(app)}
-                type="submit"
-              >
-                {t("confirm")}
-              </button>
-              <button
-                className={`btn ${styles.clearBtn}`}
-                onClick={handleClear}
-              >
-                {t("clear")}
-              </button>
-            </form>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  required
+                  minLength={11}
+                  maxLength={11}
+                  placeholder={t("Enter Your Phone")}
+                  // value={app.phone}
+                  onChange={(e) =>
+                    setApp({
+                      ...app,
+                      phone: e.target.value,
+                    })
+                  }
+                />
+                <h3>
+                  {t("Weekday")} :{" "}
+                  {app.schedule?.day ? t(`${app.schedule?.day}`) : ""}{" "}
+                  {/* {`${app.schedule?.intday}`} */}
+                </h3>
+                <h3>
+                  {t("From")} :{" "}
+                  {app.schedule?.start ? fromTo(t, app.schedule?.start) : ""}
+                </h3>
+                <h3>
+                  {t("To")} :{" "}
+                  {app.schedule?.end ? fromTo(t, app.schedule?.end) : ""}
+                </h3>
+                <h3>
+                  {t("Date")} :{" "}
+                  {app.date
+                    ? `${app.date?.getFullYear()} / ${
+                        app.date?.getMonth() + 1
+                      } / ${app.date?.getDate()}`
+                    : ""}
+                </h3>
+                {app.date != null ? <h3>{t("sms")}</h3> : null}
+                <button
+                  className={`btn ${styles.okBtn}`}
+                  // onClick={() => console.log(app)}
+                  type="submit"
+                >
+                  {t("confirm")}
+                </button>
+                <button
+                  className={`btn ${styles.clearBtn}`}
+                  onClick={handleClear}
+                >
+                  {t("clear")}
+                </button>
+              </form>
+            </div>
           </div>
+          <Separator key={"s3t"} isTransparent={true} />
+          <Separator key={"s2c"} />
+          <Separator key={"s4t"} isTransparent={true} />
         </div>
-        <Separator key={"s3t"} isTransparent={true} />
-        <Separator key={"s2c"} />
-        <Separator key={"s4t"} isTransparent={true} />
-      </div>
+      }
     </>
   );
 }
