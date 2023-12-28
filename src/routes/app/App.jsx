@@ -14,6 +14,7 @@ import DoctorPage from "../doctor/DoctorPage";
 import NotFoundPage from "../NotFound/NotFound";
 import ConfirmPage from "../Confirm/ConfirmPage";
 import Articles from "../Articles/Articles";
+import ArticlePage from "../Articles/ArticlePage/ArticlePage";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,6 +40,10 @@ function App() {
             element={<ConfirmPage />}
           ></Route>
           <Route path="articles" element={<Articles />}></Route>
+          <Route
+            path="articles/:docid/:articleid"
+            element={<ArticlePage />}
+          ></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
           <Route path="404" element={<NotFoundPage />}></Route>
         </Routes>

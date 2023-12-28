@@ -4,3 +4,23 @@
   display: grid;
   grid-template-columns: 1fr;
 }
+
+.articleControls {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.articleControls button {
+  margin: auto;
+  width: 75px;
+  height: 75px;
+}
+
+.articleControls button h2 {
+  margin: 0px 0px;
+}
+
+.indicator {
+  margin: auto;
+  grid-column: 1 / -1;
+}
