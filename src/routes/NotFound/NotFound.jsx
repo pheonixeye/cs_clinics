@@ -7,7 +7,8 @@ const NotFoundPage = () => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>404 Not Found...</title>
+        <title>{t("page_not_found")}</title>
+        <meta name="description" content={t("page_not_found")} />
         <link rel="canonical" href={`http://mysite.com/not_found`} />
       </Helmet>
       <h3 style={{ width: "100%", gridColumn: "1 / -1" }}>

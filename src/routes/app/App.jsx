@@ -15,6 +15,7 @@ import NotFoundPage from "../NotFound/NotFound";
 import ConfirmPage from "../Confirm/ConfirmPage";
 import Articles from "../Articles/Articles";
 import ArticlePage from "../Articles/ArticlePage/ArticlePage";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,6 +26,7 @@ function App() {
   return (
     <>
       <Router>
+        <ScrollToTop />
         <Nav />
         <Routes>
           <Route path="/" index={true} element={<Homepage />}></Route>

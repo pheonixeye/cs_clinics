@@ -9,7 +9,9 @@ import ArticleMetaCard from "./components/ArticleMetaCard/ArticleMetaCard";
 import { useNavigate } from "react-router-dom";
 
 const Articles = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const isEnglish = i18n.language == "en";
 
   const navigate = useNavigate();
 
@@ -54,6 +56,14 @@ const Articles = () => {
         <title>{t("articles")}</title>
         <link rel="canonical" href="https://cs-clinics.pages.dev/articles" />
         <meta name="robots" content="all" />
+        <meta
+          name="description"
+          content={
+            isEnglish
+              ? "Medical articles written by our clinic doctors."
+              : "مقالات طبية كتبها اطباء العيادة"
+          }
+        />
         {/*TODO:add complete head seo related tags*/}
       </Helmet>
       <div className={styles.articlesDiv}>

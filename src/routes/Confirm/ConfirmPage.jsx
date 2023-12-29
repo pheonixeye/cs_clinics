@@ -25,6 +25,14 @@ const ConfirmPage = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>{t("app_conf")}</title>
+        <meta
+          name="description"
+          content={
+            isEnglish
+              ? "appointment confirmation page with appointment information"
+              : "صفحة تأكيد حجز الموعد متضمنة بيانات الحجز"
+          }
+        />
         <link
           rel="canonical"
           href={`https://cs-clinics.pages.dev/doctors/${doc._id}/confirm`}

@@ -194,6 +194,10 @@ function DoctorPage() {
         <title>
           {t("doc") + " "} {isEnglish ? doctor.docname : doctor.docname_a}
         </title>
+        <meta
+          name="description"
+          content={isEnglish ? doctor.titles[0] : doctor.titles_a[0]}
+        />
         <link
           rel="canonical"
           href={`https://cs-clinics.pages.dev/doctors/${doctor._id}/confirm`}
