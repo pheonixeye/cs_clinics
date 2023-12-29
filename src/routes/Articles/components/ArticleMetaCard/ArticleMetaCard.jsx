@@ -11,7 +11,10 @@ const ArticleMetaCard = (props) => {
   const d = new Date(props.meta.created_at);
 
   return (
-    <div className={styles.articleMetaContainer} onClick={props.onClick}>
+    <div
+      className={styles.articleMetaContainer}
+      onClick={() => props.onClick(props.meta.docid, props.meta.article_id)}
+    >
       <div className={styles.metaThumbnail}>
         <img src={props.meta.thumbnail} alt="article thumbnail" />
       </div>

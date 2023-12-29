@@ -63,11 +63,7 @@ const Articles = () => {
         <h2>{t("articles")}</h2>
         {!isError &&
           data?.map((e) => (
-            <ArticleMetaCard
-              key={e._id}
-              meta={e}
-              onClick={() => handleMetaClick(e.docid, e.article_id)}
-            />
+            <ArticleMetaCard key={e._id} meta={e} onClick={handleMetaClick} />
           ))}
         <br />
         <div className={styles.articleControls}>
