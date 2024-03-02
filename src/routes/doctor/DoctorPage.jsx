@@ -151,24 +151,24 @@ function DoctorPage() {
     };
 
     axios
-      .post("https://sms-notifier.fly.dev/sms-notify/01021646574", newApp, {
+      .post("https://notify.drkaz.dev/01091966224", newApp, {
         headers: {
           "Content-Type": "Application/json",
         },
       })
       .then(() => {
         setIsAlertLoading(false);
-      })
-      .catch(() => {
-        setIsAlertLoading(false);
-        setIsAlertError({
-          isError: true,
-          msg: {
-            title: "conn_error_title",
-            msg: "conn_error_msg",
-          },
-        });
       });
+    // .catch(() => {
+    //   setIsAlertLoading(false);
+    //   setIsAlertError({
+    //     isError: true,
+    //     msg: {
+    //       title: "conn_error_title",
+    //       msg: "conn_error_msg",
+    //     },
+    //   });
+    // })
   };
 
   const navToConfirmApp = () => {
