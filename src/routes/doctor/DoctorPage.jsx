@@ -15,6 +15,7 @@ import { fromTo } from "../../functions/timeFunction";
 import { useQuery } from "@tanstack/react-query";
 import { ONEDOCQUERY, getDoctor } from "../get_doctor";
 import LoadingIndicator from "../../components/doctors-div/components/loading-indicator/LoadingIndicator";
+import { NOTIFICATION_URL } from "../base_url";
 
 function DoctorPage() {
   const location = useLocation();
@@ -151,7 +152,7 @@ function DoctorPage() {
     };
 
     axios
-      .post("https://notify.drkaz.dev/01091966224", newApp, {
+      .post(`${NOTIFICATION_URL}/01091966224`, newApp, {
         headers: {
           "Content-Type": "Application/json",
         },
