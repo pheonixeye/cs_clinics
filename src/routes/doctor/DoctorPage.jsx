@@ -151,10 +151,11 @@ function DoctorPage() {
       date: app.date.toISOString(),
     };
 
-    axios
+    await axios
       .post(`${NOTIFICATION_URL}&topic=01091966224`, newApp, {
         headers: {
           "Content-Type": "Application/json",
+          "Access-Control-Allow-Origin": "*",
         },
       })
       .then(() => {
