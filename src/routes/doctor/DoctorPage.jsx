@@ -9,7 +9,6 @@ import "react-calendar/dist/Calendar.css";
 import Separator from "../app/components/Separator/Separator";
 import { Appointment } from "../../models/Appointment";
 import AlertBox from "./AlertBox/AlertBox";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { fromTo } from "../../functions/timeFunction";
 import { useQuery } from "@tanstack/react-query";
@@ -151,16 +150,16 @@ function DoctorPage() {
       date: app.date.toISOString(),
     };
 
-    await axios
-      .post(`${NOTIFICATION_URL}&topic=01091966224`, newApp, {
-        headers: {
-          "Content-Type": "Application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-      .then(() => {
-        setIsAlertLoading(false);
-      });
+    await fetch(`${NOTIFICATION_URL}&topic=01091966224`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(newApp),
+    }).then(() => {
+      setIsAlertLoading(false);
+    });
     // .catch(() => {
     //   setIsAlertLoading(false);
     //   setIsAlertError({
