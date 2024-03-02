@@ -152,7 +152,7 @@ function DoctorPage() {
     };
 
     axios
-      .post(`${NOTIFICATION_URL}/01091966224`, newApp, {
+      .post(`${NOTIFICATION_URL}&topic=01091966224`, newApp, {
         headers: {
           "Content-Type": "Application/json",
         },
