@@ -20,11 +20,7 @@ const DoctorCard = (props) => {
     >
       <div className={styles.imgContainer}>
         <img
-          src={
-            props.doctor.avatar != null
-              ? `data:image/png;base64, ${props.doctor.avatar}`
-              : `${nullDoc}`
-          }
+          src={`./doc_img/${props.doctor._id}.png` ?? `${nullDoc}`}
           alt="doctor img"
         />
       </div>
