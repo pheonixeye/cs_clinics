@@ -222,7 +222,7 @@ function DoctorPage() {
           <div key={"a2"} className={styles.docInfoContainer}>
             <div key={"a2a"} className={styles.imgContainer}>
               <img
-                src={`./doc_img/${doctor._id}.png` ?? `${nullDoc}`}
+                src={`../doc_img/${doctor._id}.png` ?? `${nullDoc}`}
                 alt="doctor img"
               />
             </div>

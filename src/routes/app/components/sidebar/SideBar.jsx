@@ -28,9 +28,9 @@ const SideBar = (props) => {
         <button className="btn" onClick={() => handleClick("/contact")}>
           {t("Contact")}
         </button>
-        <button className="btn" onClick={() => handleClick("/articles")}>
+        {/* <button className="btn" onClick={() => handleClick("/articles")}>
           {t("articles")}
-        </button>
+        </button> */}
       </ul>
     </div>
   );

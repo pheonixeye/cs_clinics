@@ -22,9 +22,9 @@ const Nav = () => {
             <Link to={"/contact"} title="Contact">
               {t("contact")}
             </Link>
-            <Link to={"/articles"} title="Articles">
+            {/* <Link to={"/articles"} title="Articles">
               {t("articles")}
-            </Link>
+            </Link> */}
           </ul>
         </nav>
         <div className={styles.navSeparator}>
